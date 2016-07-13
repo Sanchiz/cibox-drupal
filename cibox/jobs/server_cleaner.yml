@@ -23,10 +23,13 @@
       - 'file*'
       - '*.gif'
       - '*.mp3'
+    mysql_user: root
+    mysql_pass: root
+    database_pattern: "^drupal"
 
   tasks:
   - name: Clean database
-    shell: 'mysql -uroot -proot -e "show databases;" -s | egrep "^drupal" | xargs -I "@@" mysql -uroot -proot -e "DROP DATABASE @@"'
+    shell: 'mysql -u{{ mysql_user }} -p{{ mysql_pass }} -e "show databases;" -s | egrep "{{ database_pattern }}" | xargs -I "@@" mysql -u{{ mysql_user }} -p{{ mysql_pass }} -e "DROP DATABASE @@"'
     sudo: yes
 
   - name: Remove builds

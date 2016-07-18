@@ -26,6 +26,8 @@
   - name: Create commentinfo.md
     shell: echo "===============" > {{ workspace }}/commentinfo.md
 
+  # /var/www permissions should be for www-data:jenkins.
+  # sudo chmod -R 777 /var/www
   - name: Sync files into docroot
     shell: "rsync -avz {{ workspace }}/sourcecode/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
 
@@ -33,7 +35,7 @@
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
 
   - name: Run reinstall.yml
-    shell: ""
+    shell: "echo 'running playbook'"
 
   - name: Folder permissions
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

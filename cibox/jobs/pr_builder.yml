@@ -27,7 +27,7 @@
     shell: echo "===============" > {{ workspace }}/commentinfo.md
 
   - name: Sync files into docroot
-    shell: "rsync -avz {{ workspace }}/new_pull_request/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
+    shell: "rsync -avz {{ workspace }}/sourcecode/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
 
   - name: Folder permissions
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

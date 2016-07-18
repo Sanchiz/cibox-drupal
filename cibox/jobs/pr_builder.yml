@@ -20,6 +20,13 @@
     build_number: 1
     server_docroot_folder: /var/www
     project_docroot_folder: docroot
+    php_env_vars: 'APP_ENV=dev'
+    mysql_user: 'root'
+    mysql_password: 'root'
+    mysql_db: drupal{{ build_number }}
+    drupal_folder: {{ server_docroot_folder }}/build${BUILD_NUMBER}
+    site_url: http://10.0.2.15/build${BUILD_NUMBER}
+    pp_environment: 'default'
 
   # TODO: convert tasks to Ansible format.
   tasks:
@@ -35,7 +42,7 @@
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
 
   - name: Run reinstall.yml
-    shell: "echo 'running playbook'"
+    include: {{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml
 
   - name: Folder permissions
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

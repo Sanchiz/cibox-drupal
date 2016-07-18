@@ -42,7 +42,7 @@
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
 
   - name: Run reinstall.yml
-    include: {{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml
+    include: "{{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml"
 
   - name: Folder permissions
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

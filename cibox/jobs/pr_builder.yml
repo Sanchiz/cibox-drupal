@@ -24,8 +24,8 @@
     mysql_user: 'root'
     mysql_password: 'root'
     mysql_db: drupal{{ build_number }}
-    drupal_folder: {{ server_docroot_folder }}/build{{ build_number }}
-    site_url: http://10.0.2.15/build{{ build_number }}
+    drupal_folder: "{{ server_docroot_folder }}/build{{ build_number }}"
+    site_url: "http://10.0.2.15/build{{ build_number }}"
     pp_environment: 'default'
 
   # TODO: convert tasks to Ansible format.

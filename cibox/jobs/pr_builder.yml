@@ -28,6 +28,8 @@
     site_url: "http://10.0.2.15/build{{ build_number }}"
     pp_environment: 'default'
     run_reinstall: true
+    reinstall_scripts:
+      - [ "{{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml" ]
 
   pre_tasks:
     - name: Create commentinfo.md
@@ -44,8 +46,8 @@
   # TODO: convert tasks to Ansible format.
   tasks:
     - name: Run reinstall.yml
-      include: "{{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml"
-      when: run_reinstall
+      include: {{ item }}
+      with_first_found: reinstall_scripts
 
     - name: Folder permissions
       shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

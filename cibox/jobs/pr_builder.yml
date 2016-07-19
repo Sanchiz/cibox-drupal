@@ -27,6 +27,7 @@
     drupal_folder: "{{ server_docroot_folder }}/build{{ build_number }}"
     site_url: "http://10.0.2.15/build{{ build_number }}"
     pp_environment: 'default'
+    run_reinstall: true
 
   # TODO: convert tasks to Ansible format.
   tasks:
@@ -43,6 +44,7 @@
 
   - name: Run reinstall.yml
     include: "{{ server_docroot_folder }}/build{{ build_number }}/reinstall.yml"
+    when: run_reinstall
 
   - name: Folder permissions
     shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

@@ -46,7 +46,7 @@
   # TODO: convert tasks to Ansible format.
   tasks:
     - name: Run reinstall.yml
-      include: {{ item }}
+      include: "{{ item }}"
       with_items: reinstall_scripts
 
     - name: Folder permissions

@@ -45,6 +45,8 @@
   tasks:
     - name: Run reinstall.yml
       include: "{{ workspace }}/sourcecode/{{ project_docroot_folder }}/reinstall.yml"
+      args:
+        chdir: "{{ drupal_folder }}"
 
     - name: Folder permissions
       shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

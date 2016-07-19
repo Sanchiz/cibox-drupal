@@ -44,7 +44,7 @@
   # TODO: convert tasks to Ansible format.
   tasks:
     - name: Run reinstall.yml
-      include: "{{ workspace }}/sourcecode/{{ project_docroot_folder }}/project_docroot_folder/reinstall.yml"
+      include: "{{ workspace }}/sourcecode/{{ project_docroot_folder }}/reinstall.yml"
 
     - name: Folder permissions
       shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

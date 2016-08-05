@@ -4,4 +4,4 @@
   gather_facts: yes
 
   roles:
-    - { role: ../contrib/cibox-code-deploy }
+    - { role: ../custom/cibox-code-deploy }

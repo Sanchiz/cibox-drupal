@@ -4,8 +4,8 @@
   gather_facts: yes
 
   vars:
-    source: {{ workspace }}/sourcecode/{{ project_docroot_folder }}
-    destination: {{ server_docroot_folder }}/build{{ build_number }}
+    source: "{{ workspace }}/sourcecode/{{ project_docroot_folder }}"
+    destination: "{{ server_docroot_folder }}/build{{ build_number }}"
 
   roles:
     - { role: ../custom/cibox-code-deploy }

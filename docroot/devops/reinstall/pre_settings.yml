@@ -4,14 +4,17 @@
   set_fact: settings_file=/tmp/reinstall_settings.php
   when: is_windows
 
+# TODO: Add "--root={{ docroot }}"
 - name: Getting name for settings (UNIX)
   set_fact: settings_file=sites/default/settings.php
   when: is_windows == false
 
+# TODO: Add "--root={{ docroot }}"
 - name: Remove settings.php
   file: name={{ settings_file }} state=absent
   sudo: yes
 
+# TODO: Add "--root={{ docroot }}"
 - name: Creating settings.php
   sudo: yes
   shell: "cp sites/default/default.settings.php {{ settings_file }}"
@@ -30,6 +33,7 @@
   when: item.status == true
   with_items: env.pre_settings
 
+# TODO: Add "--root={{ docroot }}"
 - name: Copy settings back (WINDOWS)
   shell: cp {{ settings_file }} sites/default/settings.php
   when: is_windows

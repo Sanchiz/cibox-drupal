@@ -1,0 +1,5 @@
+---
+# Could be "local" or "remote".
+deploy_type: local
+source: ''
+destination: ''

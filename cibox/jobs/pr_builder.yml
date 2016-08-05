@@ -29,24 +29,28 @@
     pp_environment: 'default'
     run_reinstall: true
 
-  pre_tasks:
-    - name: Create commentinfo.md
-      shell: echo "===============" > {{ workspace }}/commentinfo.md
+  #roles:
+  #  - { role: ../custom/cibox-reinstall }
+  #  - { role: ../custom/cibox-sniffers }
+  #  - { role: ../custom/cibox-tests }
+  #  - { role: ../custom/cibox-tests }
+
+  #pre_tasks:
+    #- name: Create commentinfo.md
+    #  shell: echo "===============" > {{ workspace }}/commentinfo.md
 
     # /var/www permissions should be for www-data:jenkins.
     # sudo chmod -R 777 /var/www
-    - name: Sync files into docroot
-      shell: "rsync -avz {{ workspace }}/sourcecode/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
+    #- name: Sync files into docroot
+    #  shell: "rsync -avz {{ workspace }}/sourcecode/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
 
-    - name: Folder permissions
-      shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
+    #- name: Folder permissions
+    #  shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
 
-  # TODO: convert tasks to Ansible format.
   tasks:
     - name: Run reinstall.yml
       include: "{{ workspace }}/sourcecode/{{ project_docroot_folder }}/reinstall.yml"
-      args:
-        chdir: "{{ drupal_folder }}"
 
+  post_tasks:
     - name: Folder permissions
       shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"

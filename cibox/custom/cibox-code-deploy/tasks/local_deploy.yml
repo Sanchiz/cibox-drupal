@@ -1,6 +1,6 @@
 ---
 - name: Sync files into docroot
-  shell: "rsync -avz {{ workspace }}/sourcecode/{{ project_docroot_folder }}/ {{ server_docroot_folder }}/build{{ build_number }}"
+  shell: "rsync -avz {{ source }}/ {{ destination }}"
 
 - name: Folder permissions
-  shell: "sudo chown -R www-data:jenkins {{ server_docroot_folder }}/build{{ build_number }}"
+  shell: "sudo chown -R www-data:jenkins {{ destination }}"

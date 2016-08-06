@@ -1,4 +1,7 @@
 ---
+- name: Generate commentinfo.md file
+  shell: 'echo "===============" > {{ workspace }}/commentinfo.md'
+
 - name: Sync files into docroot
   shell: "rsync -avz {{ source }}/ {{ destination }}"
 

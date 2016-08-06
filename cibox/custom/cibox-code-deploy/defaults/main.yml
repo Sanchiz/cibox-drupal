@@ -3,3 +3,4 @@
 deploy_type: local
 source: ''
 destination: ''
+workspace: './'

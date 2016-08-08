@@ -1,0 +1,31 @@
+---
+- include: database_backup.yml
+  when: make_backup
+  tags: [ 'database-backup' ]
+
+- include: prepare_environment.yml
+  tags: [ 'prepare-environment' ]
+
+- include: pre_settings.yml
+  when: workflow_type == "sql"
+  tags: [ 'settings', 'pre-settings', 'sql-workflow' ]
+
+- include: sql_workflow.yml
+  when: workflow_type == "sql"
+  tags: [ 'sql-workflow' ]
+
+- include: profile_workflow.yml
+  when: workflow_type == "profile"
+  tags: [ 'profile-workflow' ]
+
+- include: prepare_environment.yml
+  tags: [ 'prepare-environment' ]
+
+- include: post_settings.yml
+  tags: [ 'settings', 'post-settings' ]
+
+- include: modules_enable.yml
+  tags: [ 'modules-enable' ]
+
+- include: drush_commands.yml
+  tags: [ 'drush-commands' ]

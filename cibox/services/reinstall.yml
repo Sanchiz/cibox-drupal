@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    pp_environment: default
+    docroot: ../../docroot
+    config_folder: ../config
+
+  vars_files:
+    - "{{ config_folder }}/reinstall/environments/global_env.yml"
+    - "{{ config_folder }}/reinstall/global_settings.yml"
+
+  pre_tasks:
+    - name: Include specific variables per environment
+      include_vars: "{{ config_folder }}/reinstall/environments/{{ pp_environment }}_env.yml"
+
+  roles:
+    - { role: ../custom/cibox-build }
